@@ -1,0 +1,44 @@
+function isListedDomain(domain, listedDomainsObj) {
+  var match = false
+  var origins = listedDomainsObj['cookieSiteOrigins']
+  if(!origins.has(domain)) {
+    var listedDomains = listedDomainsObj['clearListedSites']
+    var index = 0
+    while(index < listedDomains.length && !match) {
+      match = new Boolean(domain.includes(listedDomains[index]))
+      index++
+    }
+  }
+  return match
+}
+
+function cookiesFromStore(cookieStore) {
+  chrome.cookies.get({
+    "storeId": cookieStore['id']
+  }, function(cookies) {
+      chrome.storage.sync.get(["clearListedSites", 'cookieSiteOrigins'], function (result) {
+      for(index=0; index<cookies.length; index++) {
+        var currentCookie = cookies[index]
+        if (isListedDomain(currentCookie['domain'], result)) {
+          result['cookieSiteOrigins'].add(currentCookie['domain'])
+        }
+      }
+      chrome.storage.sync.set({'cookieSiteOrigins': result['cookieSiteOrigins']}, function() {})
+    })
+  })
+}
+
+function findAllSiteDomains() {
+  chrome.cookies.getAllCookieStores(function(stores) {
+    for(index=0; index<stores.length; index++) {
+      var currentStore = stores[index]
+      cookiesFromStore(currentStore)
+    }
+  })
+}
+
+//Scan cookie stores
+//For all cookie stores, get all cookies and delete cookies with matching domains - if domain not already in list, add to list and delete cookies
+//On additional site added - scan cookies - Event
+//On install scan cookies - Event
+//Method to scan 
