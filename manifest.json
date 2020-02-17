@@ -1,18 +1,33 @@
 {
     "name": "Clear Selected Site Data",
     "version": "1.0",
+    "options_page": "options.html",
     "description": "Clear site data for specified websites. Allows users to navigate around content limitations and site issues.",
     "manifest_version": 2,
     "permissions": [
         "storage",
-        "browsingData"
+        "browsingData",
+        "tabs",
+        "cookies",
+        "*://nytimes.com/",
+        "*://*.nytimes.com/",
+        "*://washingtonpost.com/",
+        "*://*.washingtonpost.com/",
+        "*://bloomberg.com/",
+        "*://*.bloomberg.com/",
+        "*://*.com/",
+        "*://*.org/",
+        "*://*.net/",
+        "*://*.io/",
+        "*://*.us/",
+        "*://*.gov/"
     ], 
     "browser_action": {
         "default_title": "Make this page red",
         "default_popup": "popup.html"
     },
     "background": {
-        "scripts": ["clearData.js"],
+        "page": "background.html",
         "persistent": false
     }
   }
