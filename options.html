@@ -1,21 +1,56 @@
 <!DOCTYPE html>
   <html>
     <head>
+      <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
       <style>
+        body {
+          color: #54A9DF;
+          background-color: #333333;
+        }
         button {
           outline: none;
           margin: 10px;
+          font-family: 'News Cycle', serif;
         }
-        ul {
-          list-style-type: none;
+        td {
+          font-size: 18px;
+          font-family: 'News Cycle', serif;
+        }
+        h1 {
+          font-size: 36px;
+          font-family: 'News Cycle', serif;
+        }
+        h2 {
+          font-size: 30px;
+          font-family: 'News Cycle', serif;
+          margin-bottom: 15px;
+        }
+        h3 {
+          font-size: 24px;
+          font-family: 'News Cycle', serif;
+          margin-bottom: 1px;
+        }
+        form {
+          width: 30%;
+          font-family: 'News Cycle', serif;
+        }
+        input {
+          font-size: 18px;
+          font-family: inherit;
+          margin-right: 5%;
         }
       </style>
     </head>
     <body>
       <h1>Free News - Options</h1>
       <br>
-      <div id="domainsDiv">
+      <div>
         <h2>Manage Domains</h2>
+        <div id="domainsDiv">
+        </div>
+        <table id="domainsTable">
+
+        </table>
         <ul id="domainsList">
         </ul>
       </div>

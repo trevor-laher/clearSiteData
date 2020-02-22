@@ -4,6 +4,7 @@
 import { getAllDomains, addSite, removeSite } from './clearData.js';
 
 function initializePage() {
+    var domainsDiv = document.querySelector('#domainsDiv');
     var domainsHtmlList = document.querySelector('#domainsList');
     let form = document.createElement('FORM');
     let span = document.createElement('SPAN');
@@ -28,8 +29,9 @@ function initializePage() {
     form.addEventListener('submit', function(event) {
         let newDomain = document.getElementById('domainField').value;
         addSite(newDomain);
-        let node = document.createElement('LI');
-        let item = document.createElement('SPAN');
+        let node = document.createElement('TR');
+        let td1 = document.createElement('TD');
+        let td2 = document.createElement('TD');
         let text = document.createTextNode(newDomain);
         let removeButton = document.createElement('BUTTON');
         removeButton.addEventListener('click', function() {
@@ -39,14 +41,15 @@ function initializePage() {
         let buttonText = document.createTextNode('Remove');
 
         removeButton.appendChild(buttonText);
-        item.appendChild(text);
-        item.appendChild(removeButton);
-        node.appendChild(item);
+        td1.appendChild(text);
+        td2.appendChild(removeButton);
+        node.appendChild(td1);
+        node.appendChild(td2);
         domainsHtmlList.appendChild(node);
     });
-    domainsHtmlList.appendChild(form);
-    domainsHtmlList.appendChild(br);
-    domainsHtmlList.appendChild(header);
+    domainsDiv.appendChild(form);
+    domainsDiv.appendChild(br);
+    domainsDiv.appendChild(header);
 }
 
 function loadDomains() {
@@ -57,8 +60,9 @@ function loadDomains() {
         //var listItems = []
         for(var i=0; i<domains.length; i++) {
             let currentDomain = domains[i];
-            let node = document.createElement('LI');
-            let item = document.createElement('SPAN');
+            let node = document.createElement('TR');
+            let td1 = document.createElement('TD');
+            let td2 = document.createElement('TD');
             let text = document.createTextNode(currentDomain['domain']);
             let removeButton = document.createElement('BUTTON');
             removeButton.addEventListener('click', function() {
@@ -68,9 +72,10 @@ function loadDomains() {
             let buttonText = document.createTextNode('Remove');
 
             removeButton.appendChild(buttonText);
-            item.appendChild(text);
-            item.appendChild(removeButton);
-            node.appendChild(item);
+            td1.appendChild(text);
+            td2.appendChild(removeButton);
+            node.appendChild(td1);
+            node.appendChild(td2);
             //listItems.push(node);
             domainsHtmlList.appendChild(node);
         }
