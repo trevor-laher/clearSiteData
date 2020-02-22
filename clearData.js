@@ -7,7 +7,7 @@ function getAllOrigins(domains) {
     return origins;
 }
 
-function getAllDomains(domains) {
+export function getAllDomains(domains) {
     var domainUrls = []
     for(var i=0; i<domains.length; i++) {
         domainUrls.push(domains[i]);
